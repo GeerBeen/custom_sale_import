@@ -1,7 +1,7 @@
 {
     "name": "Sale Imports",
     "summary": "Sale Imports",
-    "version": "19.0.0.0.1",
+    "version": "19.0.0.0.2",
     "license":"OEEL-1",
     "depends": ["base", "sale"],
     "author": "GeerBeen",
