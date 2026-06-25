@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sale_order_import_wizard_action" model="ir.actions.act_window">
+        <field name="name">Import Sale from Excel</field>
+        <field name="res_model">sale.order.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="sale_order_import_wizard_menu"
+        name="Import Sale from Excel"
+        action="sale_order_import_wizard_action"
+        parent="sale.sale_order_menu"
+        sequence="50"/>
+
+    <record id="sale_order_import_wizard_view_form" model="ir.ui.view">
+        <field name="name">sale.order.import.wizard.view.form</field>
+        <field name="model">sale.order.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sale Order import from Excel">
+                <sheet>
+                    <group>
+                        <group string="File and Customer">
+                            <field name="excel_file" filename="file_name" options="{'accepted_file_extensions': '.xlsx'}"/>
+                            <field name="file_name" invisible="1"/>
+                            <field name="partner_id" options="{'no_create':True}"/>
+                        </group>
+                        <group string="Rows and Columns Settings">
+                            <field name="start_row"/>
+                            <field name="product_col"/>
+                            <field name="quantity_col"/>
+                            <field name="price_col"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button
+                        string="Import"
+                        class="btn-primary"
+                        type="object"
+                        name="sale_order_import_action"
+                        invisible="not excel_file or not partner_id or not start_row or not product_col or not quantity_col or not price_col"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    
+</odoo>
